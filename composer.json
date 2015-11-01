@@ -9,7 +9,7 @@
             "email": "andre@silvertipsoftware.com"
         }
     ],
-    "require": {}
+    "require": {},
     "autoload": {
         "psr-4": {
             "SilvertipSoftware\\LaravelTraitPack\\": "src/"
