@@ -1,0 +1,21 @@
+{
+    "name": "silvertipsoftware/laravel-trait-pack",
+    "description": "A basic collection of some useful traits for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andre Sonnichsen",
+            "email": "andre@silvertipsoftware.com"
+        }
+    ],
+    "require": {}
+    "autoload": {
+        "psr-4": {
+            "SilvertipSoftware\\LaravelTraitPack\\": "src/"
+        },
+        "files": [
+            "src/trait_helpers.php"
+        ]
+    }
+}
