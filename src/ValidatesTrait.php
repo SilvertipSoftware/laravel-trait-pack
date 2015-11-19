@@ -26,6 +26,8 @@ trait ValidatesTrait {
     }
 
     public function mergeErrors( $bag ) {
+        if ( $bag == null ) return;
+
         if ( $this->errors == null )
             $this->errors = new \Illuminate\Support\MessageBag();
         $this->errors->merge( $bag->getMessages() );
