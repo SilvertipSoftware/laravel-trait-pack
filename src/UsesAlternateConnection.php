@@ -11,8 +11,8 @@ trait UsesAlternateConnection {
         $clz = get_class();
         $conn = trait_config_get( $clz, 'SilvertipSoftware\LaravelTraitPack\UsesAlternateConnection.connection' );
         if ( $conn == null ) {
-            foreach( array_merge( [$clz => $clz], class_parents($clz) ) as $clz ) {
-                $conn = \config( 'database.alternateConnections.' . $clz );
+            foreach( array_merge( [$clz => $clz], class_parents($clz) ) as $clz2 ) {
+                $conn = \config( 'database.alternateConnections.' . $clz2 );
                 if ( $conn != null )
                     break;
             }
