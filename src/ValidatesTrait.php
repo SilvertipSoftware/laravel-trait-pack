@@ -17,7 +17,17 @@ trait ValidatesTrait {
             return true;
         }
 
-        $validator = \Validator::make( $this->getAttributes(), $rules );
+       $attrs = $this->getAttributes();
+
+        // loop through any mutated attributes and add those that have rules, and aren't there already
+        $mutated = $this->getMutatedAttributes();
+        foreach( $mutated as $key ) {
+            if ( !array_key_exists($key, $attrs) && array_key_exists($key, $rules) ) {
+                $attrs[$key] = $this->mutateAttributeForArray($key, null);
+            } 
+        }
+
+        $validator = \Validator::make( $attrs, $rules );
         $ret = $validator->passes();
         if ( !$ret ) {
             $this->errors = $validator->messages();
