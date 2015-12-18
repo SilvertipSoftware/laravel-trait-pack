@@ -13,6 +13,9 @@ trait ValidatesTrait {
             $rules = array_merge( $rules, $creationRules );
         }
 
+        if ( $this->fireModelEvent('validating') === false )
+            return false;
+
         if ( empty($rules) ) {
             return true;
         }
@@ -32,6 +35,8 @@ trait ValidatesTrait {
         if ( !$ret ) {
             $this->errors = $validator->messages();
         }
+
+        $this->fireModelEvent( 'validated', false );
         return $ret;
     }
 
