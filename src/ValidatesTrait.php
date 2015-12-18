@@ -4,7 +4,7 @@ trait ValidatesTrait {
 
     public $errors = null;
 
-    public function isValid() {
+    public function isValid( $isSaving = false ) {
         $class = get_called_class();
         $rules = trait_config_get( get_called_class(), 'SilvertipSoftware\LaravelTraitPack\ValidatesTrait.rules', [] );
 
@@ -36,7 +36,7 @@ trait ValidatesTrait {
             $this->errors = $validator->messages();
         }
 
-        $this->fireModelEvent( 'validated', false );
+        $this->fireModelEvent( $isSaving ? 'validatedForSave' : 'validated', false );
         return $ret;
     }
 
@@ -50,7 +50,7 @@ trait ValidatesTrait {
 
     public static function bootValidatesTrait() {
         static::saving( function($model) {
-            return $model->isValid();
+            return $model->isValid(true);
         });
     }
 
