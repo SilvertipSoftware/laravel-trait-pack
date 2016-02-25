@@ -18,11 +18,12 @@ class ExtendedValidator extends \Illuminate\Validation\Validator {
         ));
     }
 
-    /* 'field' => 'unique_except_for_self:tablename,attrname,scope_attrname,...' */
+    /* 'field' => 'unique_except_for_self:tablename,attrname,id,scope_attrname,...' */
     public function validateUniqueExceptForSelf( $attribute, $value, $parameters ) {
         $extras = array();
-        if ( isset( $parameters[2]) ) {
-            $scopes = array_slice( $parameters, 2 );
+        $primaryKey = ( isset($parameters[2]) ? $parameters[2] : 'id');
+        if ( isset( $parameters[3]) ) {
+            $scopes = array_slice( $parameters, 3 );
             foreach ( $scopes as $scope )
                 array_push( $extras, $scope, $this->data[$scope] );
         }
@@ -30,8 +31,8 @@ class ExtendedValidator extends \Illuminate\Validation\Validator {
             array(
                 $parameters[0],
                 isset($parameters[1]) ? $parameters[1] : $attribute,
-                isset($this->data['id']) ? $this->data['id'] : null,
-                isset($this->data['id']) ? 'id' : null
+                isset($this->data[$primaryKey]) ? $this->data[$primaryKey] : null,
+                isset($this->data[$primaryKey]) ? $primaryKey : null
             ),
             $extras
         ));
