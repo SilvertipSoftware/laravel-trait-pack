@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "illuminate/support": "5.1.*",
-        "illuminate/database": "5.1.*",
+        "illuminate/support": "5.4.*",
+        "illuminate/database": "5.4.*",
         "silvertipsoftware/dynamic-methods": "1.0.0"
     },
     "autoload": {
