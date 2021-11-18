@@ -1,8 +1,9 @@
 <?php namespace SilvertipSoftware\LaravelTraitPack;
 
-use \Symfony\Component\Translation\TranslatorInterface;
+use Illuminate\Contracts\Validation\Validator;
+use \Symfony\Contracts\Translation\TranslatorInterface;
 
-class ExtendedValidator extends \Illuminate\Validation\Validator {
+class ExtendedValidator extends Validator {
 
     public function __construct(TranslatorInterface $translator, $data, $rules, $messages = array())
     {
