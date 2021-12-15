@@ -3,7 +3,7 @@
 use Illuminate\Validation\Validator;
 use \Symfony\Component\Translation\TranslatorInterface ;
 
-class ExtendedValidator implements Validator {
+class ExtendedValidator extends Validator {
 
     public function __construct(TranslatorInterface $translator, $data, $rules, $messages = array())
     {
