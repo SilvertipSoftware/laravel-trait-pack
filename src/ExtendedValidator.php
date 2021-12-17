@@ -5,7 +5,7 @@ use \Symfony\Component\Translation\TranslatorInterface ;
 
 class ExtendedValidator extends Validator {
 
-    public function __construct(TranslatorInterface $translator, $data, $rules, $messages = array())
+    public function __construct($translator, $data, $rules, $messages = array())
     {
         parent::__construct($translator, $data, $rules, $messages);
         array_push( $this->implicitRules, 'RequiredIfNot' );
